@@ -9,8 +9,9 @@ namespace ExcelObj
     class Excel
     {
         public ulong Kolumny, I;
-        //public int I;
+        public bool Z;
         public ulong[] Tab;
+
 
         public void Zmiana_Danych(ulong kolumny, ulong i)
         {
@@ -29,15 +30,25 @@ namespace ExcelObj
 
         }
                
-        public void PobranieDanych(ulong kolumny)
+        public void PobranieDanych()
         {
-            Console.WriteLine("Prosze podac o ktora kolumne chodzi: \n");
-            kolumny = Convert.ToUInt64(Console.ReadLine());
-            if (kolumny > 18446744073709551615)
+            ulong kolumny= 0;
+
+            Console.WriteLine("\nProsze podac o ktora kolumne chodzi: \n");
+                 try
+                    {
+                        kolumny = Convert.ToUInt64(Console.ReadLine());
+                    }
+                 catch (Exception ex) 
+                    { 
+                        Console.WriteLine
+                         ("Gratulacje, zhakowales system, \nwpisales litery, za duzo cyfr, \nczy nic?\n");
+                    }
+            if (kolumny > 18446744073709551614)
                 {
                     Console.WriteLine("Przepraszam najwieksza liczba jest 18 446 744 073 709 551 615");
                     Console.ReadLine();
-                    Zmiana_Danych(18446744073709551615, 0);
+                    Zmiana_Danych(18446744073709551614, 0);
                 }
                 else
                    Zmiana_Danych(kolumny, 0);
@@ -54,7 +65,7 @@ namespace ExcelObj
         
         public void Wypisanie(ulong kolumny, ulong i)
         {
-             Console.WriteLine("Szukasz kolumny ");
+             Console.Write("Szukasz kolumny: ");
              int a = Convert.ToInt32(i);
             for (int j = (a - 1); j >= 0; j--)
             {
@@ -63,21 +74,40 @@ namespace ExcelObj
                 else
                     Console.Write(Czytanie_Tablicy(j));
             }
-            //Console.WriteLine("\n");
-            Console.ReadLine();
-
             
+            Console.WriteLine("\n");
+           
+            JeszczeRaz();
+         }
+
+        public void JeszczeRaz()
+        {
+            Console.WriteLine("Jeszcze raz? 1 - Tak, 0 - Nie \n");
+
+            ConsoleKeyInfo info = Console.ReadKey();
+            if (info.KeyChar == '1')
+            {
+                PobranieDanych();
+                Obliczanie(Kolumny);
+                Wypisanie(Kolumny, I);
+            }
+            else
+                Console.WriteLine("\nDziekuje");
+            Console.ReadLine();
         }
         
-       
-
-        static void Main(string[] args)
+      // Tutaj zaczyna sie program 
+ 
+    static void Main(string[] args)
         {
+
             Excel Ex = new Excel();
             Ex.Kolumny = 0;
             Ex.I = 0;
+            Ex.Z = true;
             Ex.Tab = new ulong [18];
-            Ex.PobranieDanych(Ex.Kolumny);
+
+            Ex.PobranieDanych();
             Ex.Obliczanie(Ex.Kolumny);
             Ex.Wypisanie(Ex.Kolumny, Ex.I);
         }
