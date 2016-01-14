@@ -1,0 +1,6 @@
+R:\Projekty\VS13\Projects\ExcelObj\ExcelObj\bin\Debug\ExcelObj.exe.config
+R:\Projekty\VS13\Projects\ExcelObj\ExcelObj\obj\Debug\ExcelObj.csprojResolveAssemblyReference.cache
+R:\Projekty\VS13\Projects\ExcelObj\ExcelObj\bin\Debug\ExcelObj.exe
+R:\Projekty\VS13\Projects\ExcelObj\ExcelObj\bin\Debug\ExcelObj.pdb
+R:\Projekty\VS13\Projects\ExcelObj\ExcelObj\obj\Debug\ExcelObj.exe
+R:\Projekty\VS13\Projects\ExcelObj\ExcelObj\obj\Debug\ExcelObj.pdb
