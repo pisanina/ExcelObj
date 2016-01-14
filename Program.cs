@@ -45,9 +45,11 @@ namespace ExcelObj
         
         public void Obliczanie(ulong kolumny)
         {
-            Zmiana_Tablicy(kolumny%26);
-            kolumny = kolumny/26;
-
+            while (kolumny > 0)
+            {
+                Zmiana_Tablicy(kolumny % 26);
+                kolumny = kolumny / 26;
+            }
         }
         
         public void Wypisanie(ulong kolumny, ulong i)
@@ -57,11 +59,13 @@ namespace ExcelObj
             for (int j = (a - 1); j >= 0; j--)
             {
                 if (Czytanie_Tablicy(j) > 0)
-                    Console.WriteLine((char)(Czytanie_Tablicy(j) + 64));
+                    Console.Write((char)(Czytanie_Tablicy(j) + 64));
                 else
-                    Console.WriteLine(Czytanie_Tablicy(j));
+                    Console.Write(Czytanie_Tablicy(j));
             }
-            Console.WriteLine("\n");
+            //Console.WriteLine("\n");
+            Console.ReadLine();
+
             
         }
         
