@@ -8,29 +8,28 @@ namespace ExcelObj
 {
     class Excel
     {
-        public ulong Kolumny, I;
-        public bool Z;
-        public ulong[] Tab;
+         ulong Kolumny, I;
+         ulong[] Tab;
 
 
-        public void Zmiana_Danych(ulong kolumny, ulong i)
+         void Zmiana_Danych(ulong kolumny, ulong i)
         {
             Kolumny = kolumny;
             I = i;
         }
 
-        public void Zmiana_Tablicy(ulong a)
+         void Zmiana_Tablicy(ulong a)
         {
             Tab[I] = a;
             I++;
         }
-        public ulong Czytanie_Tablicy(int i)
+         ulong Czytanie_Tablicy(int i)
         {
             return Tab[i];
 
         }
                
-        public void PobranieDanych()
+         void PobranieDanych()
         {
             ulong kolumny= 0;
 
@@ -54,7 +53,7 @@ namespace ExcelObj
                    Zmiana_Danych(kolumny, 0);
         }
         
-        public void Obliczanie(ulong kolumny)
+         void Obliczanie(ulong kolumny)
         {
             while (kolumny > 0)
             {
@@ -63,7 +62,7 @@ namespace ExcelObj
             }
         }
         
-        public void Wypisanie(ulong kolumny, ulong i)
+         void Wypisanie(ulong kolumny, ulong i)
         {
              Console.Write("Szukasz kolumny: ");
              int a = Convert.ToInt32(i);
@@ -77,19 +76,20 @@ namespace ExcelObj
             
             Console.WriteLine("\n");
            
-            JeszczeRaz();
+            //JeszczeRaz();
          }
 
-        public void JeszczeRaz()
+         void JeszczeRaz()
         {
-            Console.WriteLine("Jeszcze raz? 1 - Tak, 0 - Nie \n");
+            Console.WriteLine("Jeszcze raz? Spacja - Tak \n");
 
             ConsoleKeyInfo info = Console.ReadKey();
-            if (info.KeyChar == '1')
+            if (info.Key == ConsoleKey.Spacebar)
             {
                 PobranieDanych();
                 Obliczanie(Kolumny);
                 Wypisanie(Kolumny, I);
+                JeszczeRaz();
             }
             else
                 Console.WriteLine("\nDziekuje");
@@ -104,12 +104,12 @@ namespace ExcelObj
             Excel Ex = new Excel();
             Ex.Kolumny = 0;
             Ex.I = 0;
-            Ex.Z = true;
             Ex.Tab = new ulong [18];
 
             Ex.PobranieDanych();
             Ex.Obliczanie(Ex.Kolumny);
             Ex.Wypisanie(Ex.Kolumny, Ex.I);
+            Ex.JeszczeRaz();
         }
     }
 }
